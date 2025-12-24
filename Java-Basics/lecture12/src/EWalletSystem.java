@@ -103,7 +103,7 @@ public class EWalletSystem {
                     accountService.changePassword(currentUser);
                     break;
                 case 6:
-                    System.out.println("Logout");
+                    logout();
                     break;
                 default:
                     System.out.println("Invalid option.");
@@ -111,5 +111,10 @@ public class EWalletSystem {
         } catch (NumberFormatException e) {
             System.out.println("Invalid input. Please enter a number.");
         }
+    }
+
+    private static void logout() {
+        System.out.println("\nGoodbye, " + currentUser.getUsername() + "!");
+        currentUser = null;
     }
 }
