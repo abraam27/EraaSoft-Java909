@@ -1,5 +1,6 @@
 import java.util.Scanner;
 
+import services.AccountService;
 import services.AuthService;
 import services.TransactionService;
 
@@ -13,6 +14,7 @@ public class EWalletSystem {
     
     private static AuthService authService;
     private static TransactionService transactionService;
+    private static AccountService accountService;
 
     public static void main(String[] args) {
         // Initialize
@@ -21,6 +23,7 @@ public class EWalletSystem {
         
         authService = new AuthService(wallet, scanner);
         transactionService = new TransactionService(wallet, scanner);
+        accountService = new AccountService(wallet, scanner);
 
         System.out.println("╔════════════════════════════════════╗");
         System.out.println("║   Welcome to E-Wallet System       ║");
@@ -97,7 +100,7 @@ public class EWalletSystem {
                     System.out.println("Show Account Details");
                     break;
                 case 5:
-                    System.out.println("Change Password");
+                    accountService.changePassword(currentUser);
                     break;
                 case 6:
                     System.out.println("Logout");
