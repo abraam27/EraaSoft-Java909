@@ -83,7 +83,7 @@ public class Validator {
     public boolean validateSufficientBalance(Account account, double amount) {
         if (account.getBalance() < amount) {
             System.out.println("Insufficient balance.");
-            System.out.printf("Current balance: $%.2f\n", account.getBalance());
+            System.out.printf("Current balance: EGP %.2f\n", account.getBalance());
             return false;
         }
         return true;

@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 import services.AuthService;
+import services.TransactionService;
 
 import model.Wallet;
 import model.Account;
@@ -11,6 +12,7 @@ public class EWalletSystem {
     private static Account currentUser;
     
     private static AuthService authService;
+    private static TransactionService transactionService;
 
     public static void main(String[] args) {
         // Initialize
@@ -18,6 +20,7 @@ public class EWalletSystem {
         scanner = new Scanner(System.in);
         
         authService = new AuthService(wallet, scanner);
+        transactionService = new TransactionService(wallet, scanner);
 
         System.out.println("╔════════════════════════════════════╗");
         System.out.println("║   Welcome to E-Wallet System       ║");
@@ -82,7 +85,7 @@ public class EWalletSystem {
             int choice = Integer.parseInt(scanner.nextLine().trim());
             switch (choice) {
                 case 1:
-                    System.out.println("Deposit");
+                    transactionService.deposit(currentUser);
                     break;
                 case 2:
                     System.out.println("Withdraw");

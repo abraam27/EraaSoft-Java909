@@ -51,4 +51,8 @@ public class Account {
         isActive = active; 
     }
 
+    // Balance operations
+    public void deposit(double amount) {
+        balance += amount;
+    }
 }
