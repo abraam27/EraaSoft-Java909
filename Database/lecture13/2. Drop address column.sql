@@ -1,0 +1,1 @@
+ALTER TABLE Manger DROP COLUMN address;
