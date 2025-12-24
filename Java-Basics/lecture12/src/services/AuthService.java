@@ -70,4 +70,58 @@ public class AuthService {
             return null;
         }
     }
+
+    public Account login() {
+        System.out.println("\n╔════════════════════════════════════╗");
+        System.out.println("║           LOGIN                    ║");
+        System.out.println("╚════════════════════════════════════╝");
+
+        int attempts = 0;
+        int maxAttempts = 3;
+
+        while (attempts < maxAttempts) {
+            try {
+                System.out.print("Enter username: ");
+                String username = scanner.nextLine().trim();
+                if (username.isEmpty()) {
+                    System.out.println("Username cannot be empty.");
+                    attempts++;
+                    continue;
+                }
+
+                System.out.print("Enter password: ");
+                String password = scanner.nextLine().trim();
+                if (password.isEmpty()) {
+                    System.out.println("Password cannot be empty.");
+                    attempts++;
+                    continue;
+                }
+
+                Account account = wallet.getAccount(username);
+                if (account == null) {
+                    System.out.println("User does not exist.");
+                    attempts++;
+                } else if (!account.isActive()) {
+                    System.out.println("Account is inactive. Please contact support.");
+                    return null;
+                } else if (!account.getPassword().equals(password)) {
+                    System.out.println("Incorrect password.");
+                    attempts++;
+                } else {
+                    System.out.println("\nLogin successful! Welcome back, " + username + "!");
+                    return account;
+                }
+
+                if (attempts < maxAttempts) {
+                    System.out.println("Remaining attempts: " + (maxAttempts - attempts));
+                }
+            } catch (Exception e) {
+                System.out.println("Error during login: " + e.getMessage());
+                attempts++;
+            }
+        }
+
+        System.out.println("Maximum login attempts exceeded. Returning to main menu.");
+        return null;
+    }
 }
