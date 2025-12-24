@@ -88,7 +88,7 @@ public class EWalletSystem {
                     transactionService.deposit(currentUser);
                     break;
                 case 2:
-                    System.out.println("Withdraw");
+                    transactionService.withdraw(currentUser);
                     break;
                 case 3:
                     System.out.println("Transfer");

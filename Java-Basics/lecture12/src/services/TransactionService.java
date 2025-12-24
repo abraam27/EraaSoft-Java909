@@ -22,7 +22,7 @@ public class TransactionService {
         System.out.println("╚════════════════════════════════════╝");
 
         try {
-            System.out.print("Enter amount to deposit: EGP");
+            System.out.print("Enter amount to deposit: EGP ");
             double amount = Double.parseDouble(scanner.nextLine().trim());
 
             if (!validator.validateAmount(amount)) {
@@ -37,6 +37,34 @@ public class TransactionService {
             System.out.println("Invalid amount format.");
         } catch (Exception e) {
             System.out.println("Error during deposit: " + e.getMessage());
+        }
+    }
+
+    public void withdraw(Account account) {
+        System.out.println("\n╔════════════════════════════════════╗");
+        System.out.println("║           WITHDRAW                 ║");
+        System.out.println("╚════════════════════════════════════╝");
+
+        try {
+            System.out.print("Enter amount to withdraw: EGP ");
+            double amount = Double.parseDouble(scanner.nextLine().trim());
+
+            if (!validator.validateAmount(amount)) {
+                return;
+            }
+
+            if (!validator.validateSufficientBalance(account, amount)) {
+                return;
+            }
+
+            account.withdraw(amount);
+            System.out.println("Withdrawal successful!");
+            System.out.printf("New balance: EGP %.2f\n", account.getBalance());
+
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid amount format.");
+        } catch (Exception e) {
+            System.out.println("Error during withdrawal: " + e.getMessage());
         }
     }
 }
