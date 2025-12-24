@@ -7,6 +7,12 @@ public class Wallet {
 
     public Wallet() {
         accounts = new HashMap<>();
+        initializeAdminAccount();
+    }
+
+    private void initializeAdminAccount() {
+        Account admin = new Account("IAM", "IAM123", 25, "01000000000", true);
+        accounts.put("IAM", admin);
     }
 
     public boolean usernameExists(String username) {
@@ -29,5 +35,12 @@ public class Wallet {
 
     public Map<String, Account> getAllAccounts() {
         return accounts;
+    }
+
+    public void deleteAccount(String username) {
+        Account account = accounts.get(username);
+        if (account != null) {
+            accounts.remove(username);
+        }
     }
 }

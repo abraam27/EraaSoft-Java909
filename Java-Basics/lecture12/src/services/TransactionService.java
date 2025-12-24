@@ -30,6 +30,7 @@ public class TransactionService {
             }
 
             account.deposit(amount);
+            account.addTransaction("Deposited EGP " + amount);
             System.out.println("Deposit successful!");
             System.out.printf("New balance: EGP %.2f\n", account.getBalance());
 
@@ -58,6 +59,7 @@ public class TransactionService {
             }
 
             account.withdraw(amount);
+            account.addTransaction("Withdrew EGP " + amount);
             System.out.println("Withdrawal successful!");
             System.out.printf("New balance: EGP %.2f\n", account.getBalance());
 
@@ -111,6 +113,9 @@ public class TransactionService {
 
             sourceAccount.withdraw(amount);
             destAccount.deposit(amount);
+
+            sourceAccount.addTransaction("Transferred EGP " + amount + " to " + destUsername);
+            destAccount.addTransaction("Received EGP " + amount + " from " + sourceAccount.getUsername());
 
             System.out.println("Transfer successful!");
             System.out.printf("Your new balance: EGP %.2f\n", sourceAccount.getBalance());

@@ -57,7 +57,7 @@ public class AuthService {
             }
 
             // Create account
-            Account newAccount = new Account(username, password, age, phone);
+            Account newAccount = new Account(username, password, age, phone, false);
             wallet.addAccount(newAccount);
 
             System.out.println("\nAccount created successfully!");
@@ -108,6 +108,7 @@ public class AuthService {
                     System.out.println("Incorrect password.");
                     attempts++;
                 } else {
+                    account.addTransaction("Logged in");
                     System.out.println("\nLogin successful! Welcome back, " + username + "!");
                     return account;
                 }

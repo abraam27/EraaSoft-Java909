@@ -4,6 +4,7 @@ import java.util.Scanner;
 import model.Wallet;
 import model.Account;
 import util.Validator;
+import java.util.List;
 
 public class AccountService {
     private Wallet wallet;
@@ -61,10 +62,32 @@ public class AccountService {
             }
 
             account.setPassword(newPassword);
+            account.addTransaction("Password changed");
             System.out.println("Password changed successfully!");
 
         } catch (Exception e) {
             System.out.println("Error changing password: " + e.getMessage());
         }
     }
+
+    public void showTransactionHistory(Account account) {
+        System.out.println("\n╔════════════════════════════════════╗");
+        System.out.println("║     TRANSACTION HISTORY            ║");
+        System.out.println("╚════════════════════════════════════╝");
+
+        try {
+            List<String> history = account.getTransactionHistory();
+            if (history.isEmpty()) {
+                System.out.println("No transactions yet.");
+            } else {
+                for (String transaction : history) {
+                    System.out.println(transaction);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Error displaying history: " + e.getMessage());
+        }
+    }
+
+    
 }

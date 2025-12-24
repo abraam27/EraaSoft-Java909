@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
 import services.AccountService;
+import services.AdminService;
 import services.AuthService;
 import services.TransactionService;
 
@@ -11,19 +12,21 @@ public class EWalletSystem {
     private static Wallet wallet;
     private static Scanner scanner;
     private static Account currentUser;
-    
+
     private static AuthService authService;
     private static TransactionService transactionService;
     private static AccountService accountService;
+    private static AdminService adminService;
 
     public static void main(String[] args) {
         // Initialize
         wallet = new Wallet();
         scanner = new Scanner(System.in);
-        
+
         authService = new AuthService(wallet, scanner);
         transactionService = new TransactionService(wallet, scanner);
         accountService = new AccountService(wallet, scanner);
+        adminService = new AdminService(wallet, scanner);
 
         System.out.println("╔════════════════════════════════════╗");
         System.out.println("║   Welcome to E-Wallet System       ║");
@@ -80,7 +83,11 @@ public class EWalletSystem {
         System.out.println("3. Transfer");
         System.out.println("4. Show Account Details");
         System.out.println("5. Change Password");
-        System.out.println("6. Logout");
+        System.out.println("6. Transaction History");
+        System.out.println("7. Logout");
+        if (currentUser.isAdmin()) {
+            System.out.println("8. Admin Panel");
+        }
         System.out.println("═══════════════════════════════════");
         System.out.print("Choose an option: ");
 
@@ -103,7 +110,17 @@ public class EWalletSystem {
                     accountService.changePassword(currentUser);
                     break;
                 case 6:
+                    accountService.showTransactionHistory(currentUser);
+                    break;
+                case 7:
                     logout();
+                    break;
+                case 8:
+                    if (currentUser.isAdmin()) {
+                        adminService.showAdminPanel();
+                    } else {
+                        System.out.println("Invalid option.");
+                    }
                     break;
                 default:
                     System.out.println("Invalid option.");
@@ -114,6 +131,7 @@ public class EWalletSystem {
     }
 
     private static void logout() {
+        currentUser.addTransaction("Logged out");
         System.out.println("\nGoodbye, " + currentUser.getUsername() + "!");
         currentUser = null;
     }
