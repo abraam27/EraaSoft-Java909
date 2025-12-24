@@ -97,7 +97,7 @@ public class EWalletSystem {
                     transactionService.transfer(currentUser);
                     break;
                 case 4:
-                    System.out.println("Show Account Details");
+                    accountService.showAccountDetails(currentUser);
                     break;
                 case 5:
                     accountService.changePassword(currentUser);

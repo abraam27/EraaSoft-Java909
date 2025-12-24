@@ -16,6 +16,24 @@ public class AccountService {
         this.validator = new Validator(wallet);
     }
 
+    public void showAccountDetails(Account account) {
+        System.out.println("\n╔════════════════════════════════════╗");
+        System.out.println("║       ACCOUNT DETAILS              ║");
+        System.out.println("╚════════════════════════════════════╝");
+
+        try {
+            Account acc = wallet.getAccount(account.getUsername());
+            System.out.println("Username: " + acc.getUsername());
+            System.out.println("Phone: " + acc.getPhoneNumber());
+            System.out.println("Age: " + acc.getAge());
+            System.out.printf("Balance: EGP %.2f\n", acc.getBalance());
+            System.out.println("Status: " + (acc.isActive() ? "Active" : "Inactive"));
+            System.out.println("Password: " + "*".repeat(acc.getPassword().length()));
+        } catch (Exception e) {
+            System.out.println("Error displaying account details: " + e.getMessage());
+        }
+    }
+
     public void changePassword(Account account) {
         System.out.println("\n╔════════════════════════════════════╗");
         System.out.println("║        CHANGE PASSWORD             ║");
