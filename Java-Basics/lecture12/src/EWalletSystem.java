@@ -29,7 +29,6 @@ public class EWalletSystem {
                     showMainMenu();
                 } else {
                     showUserMenu();
-                    break;
                 }
             } catch (Exception e) {
                 System.out.println("An error occurred: " + e.getMessage());
@@ -69,6 +68,42 @@ public class EWalletSystem {
     }
 
     private static void showUserMenu() {
-        System.out.println("\n welcome to the user menu");
+        System.out.println("\n═══════════════════════════════════");
+        System.out.println("1. Deposit");
+        System.out.println("2. Withdraw");
+        System.out.println("3. Transfer");
+        System.out.println("4. Show Account Details");
+        System.out.println("5. Change Password");
+        System.out.println("6. Logout");
+        System.out.println("═══════════════════════════════════");
+        System.out.print("Choose an option: ");
+
+        try {
+            int choice = Integer.parseInt(scanner.nextLine().trim());
+            switch (choice) {
+                case 1:
+                    System.out.println("Deposit");
+                    break;
+                case 2:
+                    System.out.println("Withdraw");
+                    break;
+                case 3:
+                    System.out.println("Transfer");
+                    break;
+                case 4:
+                    System.out.println("Show Account Details");
+                    break;
+                case 5:
+                    System.out.println("Change Password");
+                    break;
+                case 6:
+                    System.out.println("Logout");
+                    break;
+                default:
+                    System.out.println("Invalid option.");
+            }
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid input. Please enter a number.");
+        }
     }
 }
