@@ -67,4 +67,58 @@ public class TransactionService {
             System.out.println("Error during withdrawal: " + e.getMessage());
         }
     }
+
+    public void transfer(Account sourceAccount) {
+        System.out.println("\n╔════════════════════════════════════╗");
+        System.out.println("║           TRANSFER                 ║");
+        System.out.println("╚════════════════════════════════════╝");
+
+        try {
+            System.out.print("Enter destination username: ");
+            String destUsername = scanner.nextLine().trim();
+
+            if (destUsername.isEmpty()) {
+                System.out.println("Username cannot be empty.");
+                return;
+            }
+
+            if (destUsername.equals(sourceAccount.getUsername())) {
+                System.out.println("Cannot transfer to yourself.");
+                return;
+            }
+
+            Account destAccount = wallet.getAccount(destUsername);
+            if (destAccount == null) {
+                System.out.println("Destination account does not exist.");
+                return;
+            }
+
+            if (!destAccount.isActive()) {
+                System.out.println("Destination account is inactive.");
+                return;
+            }
+
+            System.out.print("Enter amount to transfer: EGP ");
+            double amount = Double.parseDouble(scanner.nextLine().trim());
+
+            if (!validator.validateAmount(amount)) {
+                return;
+            }
+
+            if (!validator.validateSufficientBalance(sourceAccount, amount)) {
+                return;
+            }
+
+            sourceAccount.withdraw(amount);
+            destAccount.deposit(amount);
+
+            System.out.println("Transfer successful!");
+            System.out.printf("Your new balance: EGP %.2f\n", sourceAccount.getBalance());
+
+        } catch (NumberFormatException e) {
+            System.out.println("Invalid amount format.");
+        } catch (Exception e) {
+            System.out.println("Error during transfer: " + e.getMessage());
+        }
+    }
 }

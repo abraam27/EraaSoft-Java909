@@ -91,7 +91,7 @@ public class EWalletSystem {
                     transactionService.withdraw(currentUser);
                     break;
                 case 3:
-                    System.out.println("Transfer");
+                    transactionService.transfer(currentUser);
                     break;
                 case 4:
                     System.out.println("Show Account Details");
