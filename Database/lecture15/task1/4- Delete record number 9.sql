@@ -1,0 +1,4 @@
+DELETE FROM Doctor
+WHERE id = 9;
+
+COMMIT;

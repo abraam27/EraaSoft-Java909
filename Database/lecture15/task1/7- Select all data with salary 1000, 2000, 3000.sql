@@ -1,0 +1,3 @@
+SELECT *
+FROM Doctor
+WHERE salary IN (1000, 2000, 3000);
