@@ -1,0 +1,3 @@
+SELECT *
+FROM Employees
+WHERE LOWER(FIRST_NAME) LIKE 'p%';

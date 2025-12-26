@@ -1,0 +1,3 @@
+SELECT *
+FROM Employees
+ORDER BY LAST_NAME ASC;

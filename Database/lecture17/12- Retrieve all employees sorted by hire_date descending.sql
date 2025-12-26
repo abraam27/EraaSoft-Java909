@@ -1,0 +1,3 @@
+SELECT *
+FROM Employees
+ORDER BY HIRE_DATE DESC;

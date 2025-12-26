@@ -1,0 +1,3 @@
+SELECT *
+FROM Employees
+ORDER BY DEPARTMENT_ID ASC, Salary DESC;
