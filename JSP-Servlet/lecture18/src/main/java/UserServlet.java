@@ -28,7 +28,14 @@ public class UserServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-        String fullName = request.getParameter("fullName");
+	}
+
+	/**
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
+	 */
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// TODO Auto-generated method stub
+		String fullName = request.getParameter("fullName");
         String age = request.getParameter("age");
 
         response.setContentType("text/html");
@@ -42,14 +49,6 @@ public class UserServlet extends HttpServlet {
         out.println("<p>Age: " + age + "</p>");
         out.println("</body>");
         out.println("</html>");
-	}
-
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
 	}
 
 }
