@@ -1,0 +1,2 @@
+SELECT TO_CHAR(SYSDATE, 'DD-MON-YYYY') AS current_date
+FROM dual;

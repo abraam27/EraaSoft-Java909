@@ -1,0 +1,2 @@
+SELECT TO_CHAR(SYSDATE, 'YYYY/MM/DD HH24:MI:SS') AS system_datetime
+FROM dual;
