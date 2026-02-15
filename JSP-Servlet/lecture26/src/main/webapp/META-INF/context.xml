@@ -1,0 +1,11 @@
+<Context>
+
+  <Resource name="jdbc/connection"
+            type="javax.sql.DataSource"
+            username="myuser"
+            password="test"
+            driverClassName="oracle.jdbc.OracleDriver"
+            url="jdbc:oracle:thin:@//localhost:1521/XEPDB1"
+            />
+
+</Context>
